@@ -9,48 +9,59 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
+/* 기본 테마: 짙은 네이비 Dark Tech */
 :root{
-  --bg:#f7f6f3; --surface:#ffffff; --surface-2:#f1efea; --text:#1d1d1f; --muted:#5f5f66; --line:#e3e0d9;
-  --accent:#2f5d8a; --accent-soft:#e6eef6;
-  --cc:#c2683f; --cc-soft:#f8ebe4;
-  --cx:#3b7a64; --cx-soft:#e5f1ec;
-  --ag:#5b55b0; --ag-soft:#ebeaf8;
-  --warn:#9a6a12; --warn-soft:#fbf2df;
-  --star:#d4a017; --star-off:#dcd8cf;
-  --radius:14px; --shadow:0 1px 2px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.04);
-  --strong:#0a0a0b;
+  --bg:#0a1122; --surface:#111b31; --surface-2:#17233d; --text:#d5deee; --muted:#8fa0bd; --line:#22314f;
+  --strong:#f2f6ff;
+  --accent:#5ccfff; --accent-soft:rgba(92,207,255,.09);
+  --accent-2:#8b9bff; --accent-3:#b38cff;
+  --cc:#f39a70; --cc-soft:rgba(243,154,112,.12);
+  --cx:#3fd6c0; --cx-soft:rgba(63,214,192,.11);
+  --ag:#a98bff; --ag-soft:rgba(169,139,255,.13);
+  --warn:#f4c26b; --warn-soft:rgba(244,194,107,.10);
+  --star:#fbc531; --star-off:#2a3856;
+  --grad:linear-gradient(95deg,#6fd8ff 0%,#7f9cff 50%,#b991ff 100%);
+  --glow-1:rgba(56,132,255,.20); --glow-2:rgba(150,90,255,.14);
+  --card-bg:linear-gradient(180deg,#132040 0%,#101a30 100%);
+  --radius:14px; --shadow:0 10px 30px rgba(2,6,20,.35), inset 0 1px 0 rgba(255,255,255,.03);
   --card-pad:24px; --icon-box:64px; --icon-size:2.2rem; --icon-gap:14px;
+  color-scheme:dark;
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#16171a; --surface:#1f2024; --surface-2:#26272c; --text:#ececef; --muted:#a3a3ab; --line:#33343a;
-    --accent:#8db6df; --accent-soft:#22303d;
-    --cc:#e59670; --cc-soft:#3a2a22; --cx:#7cc3a8; --cx-soft:#1f322b; --ag:#a29df0; --ag-soft:#2a2940;
-    --warn:#e2b45a; --warn-soft:#33291a; --star:#e6b931; --star-off:#45464c;
-    --shadow:none; --strong:#ffffff;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#16171a; --surface:#1f2024; --surface-2:#26272c; --text:#ececef; --muted:#a3a3ab; --line:#33343a;
-  --accent:#8db6df; --accent-soft:#22303d;
-  --cc:#e59670; --cc-soft:#3a2a22; --cx:#7cc3a8; --cx-soft:#1f322b; --ag:#a29df0; --ag-soft:#2a2940;
-  --warn:#e2b45a; --warn-soft:#33291a; --star:#e6b931; --star-off:#45464c;
-  --shadow:none; --strong:#ffffff;
+/* 전환용 라이트 테마 */
+:root[data-theme="light"]{
+  --bg:#f5f7fb; --surface:#ffffff; --surface-2:#eef2f8; --text:#1f2937; --muted:#5b6475; --line:#dde3ee;
+  --strong:#0b1224;
+  --accent:#1d6fd8; --accent-soft:#e7f0fc;
+  --accent-2:#4f5bd5; --accent-3:#7c3aed;
+  --cc:#c2683f; --cc-soft:#f8ebe4; --cx:#0f8f7e; --cx-soft:#e3f4f1; --ag:#6a4fd1; --ag-soft:#eeeafb;
+  --warn:#9a6a12; --warn-soft:#fbf2df; --star:#d4a017; --star-off:#d9dee8;
+  --grad:linear-gradient(95deg,#1d6fd8 0%,#4f5bd5 50%,#7c3aed 100%);
+  --glow-1:rgba(29,111,216,.06); --glow-2:rgba(124,58,237,.05);
+  --card-bg:#ffffff;
+  --shadow:0 1px 2px rgba(15,23,42,.04),0 4px 16px rgba(15,23,42,.05);
+  color-scheme:light;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth; background:var(--bg)}
 body{
-  margin:0; background:var(--bg); color:var(--text);
+  margin:0; color:var(--text);
+  background:
+    radial-gradient(1100px 620px at 10% -8%, var(--glow-1), transparent 62%),
+    radial-gradient(900px 560px at 100% 4%, var(--glow-2), transparent 60%),
+    var(--bg);
+  background-repeat:no-repeat;
   font-family:"Noto Sans KR",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
   font-size:17px; line-height:1.75; word-break:keep-all; overflow-wrap:break-word;
 }
 a{color:var(--accent)}
 .wrap{max-width:960px; margin:0 auto; padding:0 24px}
 section{padding:56px 0; border-top:1px solid var(--line)}
-h1,h2,h3{line-height:1.35; margin:0}
+h1,h2,h3{line-height:1.35; margin:0; color:var(--strong)}
+::selection{background:color-mix(in srgb,var(--accent) 35%,transparent)}
 h2{font-size:clamp(1.75rem,1.2rem + 2.2vw,2.15rem); font-weight:800; letter-spacing:-.015em; margin-bottom:10px}
 h3{font-size:1.15rem; font-weight:700}
 .eyebrow{display:inline-block; font-size:clamp(1rem,.9rem + .4vw,1.1rem); font-weight:800; letter-spacing:.03em; color:var(--accent); margin-bottom:8px}
+.eyebrow::before{content:""; display:inline-block; width:18px; height:3px; border-radius:2px; background:var(--grad); vertical-align:middle; margin:-3px 10px 0 0}
 .lead{color:var(--muted); margin:0 0 28px}
 p{margin:0 0 14px}
 
@@ -178,6 +189,33 @@ tfoot td, tfoot th{font-weight:800; background:var(--surface-2); border-top:2px 
 .closing{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:32px}
 .closing .big{font-size:1.25rem; font-weight:700; line-height:1.6; margin-bottom:18px}
 footer{padding:32px 0 48px; color:var(--muted); font-size:.85rem; border-top:1px solid var(--line)}
+
+/* Dark Tech 컬러 보강 */
+strong{color:var(--strong)}
+.topbar{background:color-mix(in srgb, var(--bg) 82%, transparent)}
+.brand{color:var(--strong)}
+.toc a:hover{background:var(--accent-soft); color:var(--accent)}
+.theme-btn:hover{border-color:var(--accent); color:var(--accent)}
+.hero h1{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; padding-bottom:.08em}
+.hero-tools, .card, .table-wrap, .closing{background:var(--card-bg)}
+.hero-tools{box-shadow:var(--shadow)}
+.logo-tile{border-color:color-mix(in srgb, var(--accent) 25%, transparent)}
+.chip{background:color-mix(in srgb, var(--surface) 85%, transparent); color:var(--text); border-color:color-mix(in srgb, var(--accent) 22%, var(--line))}
+.icon{background:var(--accent-soft); border:1px solid color-mix(in srgb, var(--accent) 22%, transparent)}
+.note.tip .icon{background:var(--surface)}
+.quote{color:var(--strong); border-left:4px solid; border-image:var(--grad) 1}
+.tool{border-top-width:3px}
+.table-wrap{box-shadow:var(--shadow)}
+thead th:first-child{color:var(--accent)}
+tbody tr:hover th, tbody tr:hover td:not(.best){background:color-mix(in srgb, var(--accent) 5%, transparent)}
+td.best{background:linear-gradient(90deg, rgba(251,197,49,.16), rgba(251,197,49,.05)); box-shadow:inset 3px 0 0 var(--star)}
+:root[data-theme="light"] td.best{background:color-mix(in srgb, var(--star) 12%, transparent)}
+tfoot td, tfoot th{color:var(--strong)}
+.detail .winner{color:var(--accent)}
+.flow .arrow{color:var(--accent)}
+.step{color:var(--text)}
+.closing{box-shadow:var(--shadow)}
+.note.warn{background:color-mix(in srgb, var(--warn) 6%, var(--surface))}
 
 @media (max-width:820px){
   .g3,.awards{grid-template-columns:1fr}
@@ -597,11 +635,11 @@ document.getElementById('podium').innerHTML = order.map((t,i) =>
 
 // theme toggle
 const root = document.documentElement;
-try { const saved = localStorage.getItem('theme'); if (saved) root.dataset.theme = saved; } catch(e) {}
+// 기본은 네이비 다크 테마, 버튼으로 라이트 테마 전환
+try { const saved = localStorage.getItem('theme-navy'); if (saved) root.dataset.theme = saved; } catch(e) {}
 document.getElementById('themeBtn').addEventListener('click', () => {
-  const isDark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-  root.dataset.theme = isDark ? 'light' : 'dark';
-  try { localStorage.setItem('theme', root.dataset.theme); } catch(e) {}
+  root.dataset.theme = root.dataset.theme === 'light' ? 'dark' : 'light';
+  try { localStorage.setItem('theme-navy', root.dataset.theme); } catch(e) {}
 });
 </script>
 </body>
