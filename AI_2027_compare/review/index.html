@@ -67,7 +67,12 @@ p{margin:0 0 14px}
 /* hero */
 .hero{padding:72px 0 56px; border-top:0}
 .hero h1{font-size:clamp(1.8rem,4.6vw,2.8rem); font-weight:800; letter-spacing:-.02em}
-.hero h1 .vs{color:var(--muted); font-weight:500}
+.hero-tools{list-style:none; margin:22px 0 0; padding:14px 22px 14px 14px; display:inline-grid; gap:10px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius)}
+.hero-tools li{display:flex; align-items:center; gap:12px; font-size:1.1rem; font-weight:700; line-height:1.2}
+.logo-tile{flex:none; width:40px; height:40px; border-radius:10px; background:#fff; border:1px solid var(--line); display:grid; place-items:center; overflow:hidden}
+.logo-tile img{display:block; object-fit:contain}
+.logo-tile img.fill{width:100%; height:100%}
+.logo-tile img.mark{width:66%; height:66%}
 .hero .sub{font-size:clamp(1.3rem,1rem + 1.6vw,1.6rem); font-weight:800; line-height:1.55; letter-spacing:-.01em; color:var(--strong); margin:22px 0 30px}
 .meta{display:flex; flex-wrap:wrap; gap:8px}
 .chip{display:inline-flex; align-items:center; gap:6px; font-size:.85rem; padding:5px 12px; border-radius:999px; background:var(--surface); border:1px solid var(--line)}
@@ -219,7 +224,12 @@ footer{padding:32px 0 48px; color:var(--muted); font-size:.85rem; border-top:1px
   <!-- 1. Hero -->
   <section class="hero">
     <span class="eyebrow">첫 AI 에이전트 사용 후기</span>
-    <h1>AI 에이전트 3종 직접 써봤습니다<br><span class="vs">— Codex vs Claude Code vs Antigravity</span></h1>
+    <h1>AI 에이전트 3종 직접 써봤습니다</h1>
+    <ul class="hero-tools" aria-label="비교한 세 도구">
+      <li><span class="logo-tile"><img src="assets/logos/codex.png" alt="Codex 로고" class="fill"></span>Codex</li>
+      <li><span class="logo-tile"><img src="assets/logos/claude.svg" alt="Claude 로고" class="mark"></span>Claude Code</li>
+      <li><span class="logo-tile"><img src="assets/logos/antigravity.png" alt="Google Antigravity 로고" class="fill"></span>Antigravity</li>
+    </ul>
     <p class="sub">같은 자료, 거의 같은 프롬프트.<br>그런데 결과는 완전히 달랐습니다.</p>
     <div class="meta">
       <span class="chip"><span class="dot cc"></span>Claude Code</span>
