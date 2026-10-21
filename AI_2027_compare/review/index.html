@@ -84,6 +84,8 @@ p{margin:0 0 14px}
 .logo-tile img{display:block; object-fit:contain}
 .logo-tile img.fill{width:100%; height:100%}
 .logo-tile img.mark{width:66%; height:66%}
+.logo-tile.sm{width:26px; height:26px; border-radius:7px}
+.brand-name{display:flex; align-items:center; gap:9px}
 .hero .sub{font-size:clamp(1.3rem,1rem + 1.6vw,1.6rem); font-weight:800; line-height:1.55; letter-spacing:-.01em; color:var(--strong); margin:22px 0 30px}
 .meta{display:flex; flex-wrap:wrap; gap:8px}
 .chip{display:inline-flex; align-items:center; gap:6px; font-size:.85rem; padding:5px 12px; border-radius:999px; background:var(--surface); border:1px solid var(--line)}
@@ -183,7 +185,7 @@ tfoot td, tfoot th{font-weight:800; background:var(--surface-2); border-top:2px 
 .podium{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:24px}
 .podium .card{text-align:center; padding:18px}
 .podium .rank{font-size:.8rem; color:var(--muted); font-weight:700}
-.podium .pname{font-weight:800; font-size:1.1rem; margin:4px 0}
+.podium .pname{font-weight:800; font-size:1.1rem; margin:6px 0 4px; justify-content:center}
 .podium .score{font-size:.9rem; color:var(--muted)}
 
 .closing{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:32px}
@@ -334,7 +336,7 @@ tfoot td, tfoot th{color:var(--strong)}
     <p class="lead">한 줄로 요약하면 이렇습니다.</p>
     <div class="grid g3">
       <article class="card tool cc">
-        <div class="name"><h3>Claude Code</h3><span class="tag">종합 1위</span></div>
+        <div class="name"><h3 class="brand-name"><span class="logo-tile sm"><img src="assets/logos/claude.svg" alt="" class="mark"></span>Claude Code</h3><span class="tag">종합 1위</span></div>
         <p class="one">“가장 잘 전달하는 결과물”</p>
         <ul>
           <li class="plus">현실과 가상의 구분이 가장 명확</li>
@@ -345,7 +347,7 @@ tfoot td, tfoot th{color:var(--strong)}
         </ul>
       </article>
       <article class="card tool cx">
-        <div class="name"><h3>Codex</h3><span class="tag">가장 절제됨</span></div>
+        <div class="name"><h3 class="brand-name"><span class="logo-tile sm"><img src="assets/logos/codex.png" alt="" class="fill"></span>Codex</h3><span class="tag">가장 절제됨</span></div>
         <p class="one">“차분하고 깔끔한 편집자”</p>
         <ul>
           <li class="plus">과장된 표현이 적고 차분함</li>
@@ -356,7 +358,7 @@ tfoot td, tfoot th{color:var(--strong)}
         </ul>
       </article>
       <article class="card tool ag">
-        <div class="name"><h3>Antigravity</h3><span class="tag">디자인 1위</span></div>
+        <div class="name"><h3 class="brand-name"><span class="logo-tile sm"><img src="assets/logos/antigravity.png" alt="" class="fill"></span>Antigravity</h3><span class="tag">디자인 1위</span></div>
         <p class="one">“가장 웹사이트다운 첫인상”</p>
         <ul>
           <li class="plus">카드·메뉴·다크 테마 등 디자인 완성도 높음</li>
@@ -582,9 +584,9 @@ const criteria = [
   ["Vanessa 사용 편의성", 5, 4, 2, "Claude Code > Codex > Antigravity. 미리보기·확인이 쉬운 정도, 그리고 중간에 내가 판단해야 하는 단계의 수가 순위를 갈랐습니다."]
 ];
 const tools = [
-  {key:"cc", name:"Claude Code"},
-  {key:"cx", name:"Codex"},
-  {key:"ag", name:"Antigravity"}
+  {key:"cc", name:"Claude Code", logo:"assets/logos/claude.svg", fit:"mark"},
+  {key:"cx", name:"Codex", logo:"assets/logos/codex.png", fit:"fill"},
+  {key:"ag", name:"Antigravity", logo:"assets/logos/antigravity.png", fit:"fill"}
 ];
 
 function stars(n){
@@ -630,7 +632,7 @@ criteria.forEach(row => {
 // podium
 const order = tools.map((t,i) => ({...t, total: totals[i]})).sort((a,b) => b.total - a.total);
 document.getElementById('podium').innerHTML = order.map((t,i) =>
-  '<div class="card"><div class="rank">종합 ' + (i+1) + '위</div><div class="pname" style="color:var(--' + t.key + ')">' + t.name + '</div><div class="score">' + t.total + ' / ' + totalMax + '점</div></div>'
+  '<div class="card"><div class="rank">종합 ' + (i+1) + '위</div><div class="pname brand-name" style="color:var(--' + t.key + ')"><span class="logo-tile sm"><img src="' + t.logo + '" alt="" class="' + t.fit + '"></span>' + t.name + '</div><div class="score">' + t.total + ' / ' + totalMax + '점</div></div>'
 ).join('');
 
 // theme toggle
